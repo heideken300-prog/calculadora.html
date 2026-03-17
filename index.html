@@ -1,45 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de Soluciones</title>
+
+<link rel="apple-touch-icon" href="icono.png">
+
 <style>
+
 body{
-font-family: Arial;
-text-align:center;
-background:#f4f6f7;
-padding:30px;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#2E86C1,#1B4F72);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
 }
 
 .container{
 background:white;
 padding:25px;
-border-radius:10px;
+border-radius:15px;
 width:320px;
-margin:auto;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+h2{
+margin-bottom:20px;
+color:#1B4F72;
 }
 
 input,select{
-width:90%;
-padding:8px;
-margin:8px;
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
 }
 
 button{
-padding:10px 20px;
-margin:10px;
+width:48%;
+padding:10px;
+margin-top:10px;
 border:none;
-border-radius:6px;
-background:#2e86c1;
+border-radius:8px;
+font-size:15px;
+cursor:pointer;
+}
+
+.calcular{
+background:#27AE60;
 color:white;
-font-size:16px;
+}
+
+.limpiar{
+background:#E74C3C;
+color:white;
 }
 
 .result{
-margin-top:15px;
+background:#F2F3F4;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
 font-weight:bold;
 }
+
 </style>
 </head>
 
@@ -50,22 +80,19 @@ font-weight:bold;
 <h2>Calculadora de Soluciones</h2>
 
 <select id="unidad">
-<option value="kg">kg</option>
-<option value="litros">litros</option>
+<option>kg</option>
+<option>litros</option>
 </select>
 
 <input id="kg" placeholder="Cantidad de químico">
-
 <input id="pureza" placeholder="Pureza (%)">
-
 <input id="target" placeholder="Concentración objetivo (%)">
-
 <input id="condensados" placeholder="Condensados (%)">
 
-<br>
-
-<button onclick="calcular()">Calcular</button>
-<button onclick="limpiar()">Limpiar</button>
+<div>
+<button class="calcular" onclick="calcular()">Calcular</button>
+<button class="limpiar" onclick="limpiar()">Limpiar</button>
+</div>
 
 <div class="result" id="resultado1"></div>
 <div class="result" id="resultado2"></div>
@@ -91,11 +118,9 @@ let condGenerados = solucionTotal*(condensados/100)
 
 let aguaInicial = aguaFinal-condGenerados
 
-document.getElementById("resultado1").innerHTML=
-"Solución total: "+solucionTotal.toFixed(2)
+document.getElementById("resultado1").innerHTML="Solución total: "+solucionTotal.toFixed(2)
 
-document.getElementById("resultado2").innerHTML=
-"Agua inicial: "+aguaInicial.toFixed(2)
+document.getElementById("resultado2").innerHTML="Agua inicial: "+aguaInicial.toFixed(2)
 
 }
 
