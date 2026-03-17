@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculadora de Soluciones</title>
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:#f4f6f7;
+padding:30px;
+}
+
+.container{
+background:white;
+padding:25px;
+border-radius:10px;
+width:320px;
+margin:auto;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input,select{
+width:90%;
+padding:8px;
+margin:8px;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:6px;
+background:#2e86c1;
+color:white;
+font-size:16px;
+}
+
+.result{
+margin-top:15px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Calculadora de Soluciones</h2>
+
+<select id="unidad">
+<option value="kg">kg</option>
+<option value="litros">litros</option>
+</select>
+
+<input id="kg" placeholder="Cantidad de químico">
+
+<input id="pureza" placeholder="Pureza (%)">
+
+<input id="target" placeholder="Concentración objetivo (%)">
+
+<input id="condensados" placeholder="Condensados (%)">
+
+<br>
+
+<button onclick="calcular()">Calcular</button>
+<button onclick="limpiar()">Limpiar</button>
+
+<div class="result" id="resultado1"></div>
+<div class="result" id="resultado2"></div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let kg=parseFloat(document.getElementById("kg").value)
+let pureza=parseFloat(document.getElementById("pureza").value)
+let target=parseFloat(document.getElementById("target").value)
+let condensados=parseFloat(document.getElementById("condensados").value)
+
+let quimicoPuro = kg*(pureza/100)
+
+let solucionTotal = quimicoPuro/(target/100)
+
+let aguaFinal = solucionTotal-kg
+
+let condGenerados = solucionTotal*(condensados/100)
+
+let aguaInicial = aguaFinal-condGenerados
+
+document.getElementById("resultado1").innerHTML=
+"Solución total: "+solucionTotal.toFixed(2)
+
+document.getElementById("resultado2").innerHTML=
+"Agua inicial: "+aguaInicial.toFixed(2)
+
+}
+
+function limpiar(){
+
+document.getElementById("kg").value=""
+document.getElementById("pureza").value=""
+document.getElementById("target").value=""
+document.getElementById("condensados").value=""
+
+document.getElementById("resultado1").innerHTML=""
+document.getElementById("resultado2").innerHTML=""
+
+}
+
+</script>
+
+</body>
+</html>
